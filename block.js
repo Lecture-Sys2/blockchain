@@ -1,6 +1,6 @@
+const SHA256 = require("crypto-js/sha256");
+
 class Block{
-
-
 
     constructor(timestamp,lastHash,hash,data){
         this.timestamp = timestamp; // Zeitstempel
@@ -21,6 +21,17 @@ class Block{
         return new this("Genesis time","-----","xABc1234",["data1","data2,data3"]); // call constructor
 
     } 
+    static mineBlock(lastBlock,ownData){ // weitere Blocks in der Chain
+
+        const timestamp = Date.now(); // Zeit im ms seit 01.01.1970 | UNIX
+        const lastHash  = lastBlock.hash;
+        const hash      = Block.hash(timestap,lastHash,data);
+        return new this(timestamp,lastHash,hash,ownData);
+
+    }
+    static hash(timestamp,lastHash,data){
+        return SHA256(`${timestamp}${lastHash}${data}`).toString();
+    }
 }
 
 module.exports = Block; // Export als Modul
