@@ -25,7 +25,7 @@ class Block{
 
         const timestamp = Date.now(); // Zeit im ms seit 01.01.1970 | UNIX
         const lastHash  = lastBlock.hash;
-        const hash      = Block.hash(timestap,lastHash,data);
+        const hash      = Block.hash(timestamp,lastHash,ownData);
         return new this(timestamp,lastHash,hash,ownData);
 
     }
